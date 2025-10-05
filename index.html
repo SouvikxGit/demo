@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Souvik Ghosh — Cyberfunk Portfolio</title>
+<style>
+  :root {
+    --bg: #0d0d14;
+    --card: #1a1a2e;
+    --text: #e0e0ff;
+    --muted: #8a8abf;
+    --accent: #9b00ff;
+    --accent2: #ff00d4;
+    --accent3: #00ffd6;
+    --glass: rgba(255, 255, 255, 0.05);
+    --radius: 16px;
+    --transition: all 0.3s ease;
+    --overlay: rgba(13,13,20,0.85);
+  }
+
+  * {margin:0; padding:0; box-sizing:border-box;}
+  body {font-family:'Poppins',sans-serif; color:var(--text); overflow-x:hidden; position:relative;}
+
+  #matrix {
+    position: fixed;
+    top:0; left:0;
+    width: 100%; height:100%;
+    z-index: -2;
+    background: var(--bg);
+  }
+
+
+  .overlay {
+    position: relative;
+    background: var(--overlay);
+    border-radius: var(--radius);
+    padding: 30px;
+  }
+
+  header {
+    display:flex; justify-content:space-between; align-items:center; padding:20px 8%;
+    background: var(--overlay);
+    position:sticky; top:0; z-index:100;
+  }
+  header h1 {
+    font-size:1.8rem;
+    background: linear-gradient(90deg,var(--accent),var(--accent2));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+  nav a {color: var(--text); margin:0 12px; text-decoration:none; font-weight:500; transition:var(--transition);}
+  nav a:hover {color: var(--accent2);}
+
+
+  .hero {
+    display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:50px;
+    padding:100px 8%;
+  }
+  .hero-text {max-width:600px;}
+  .hero-text h2 {font-size:2.8rem; margin-bottom:20px; line-height:1.2;}
+  .hero-text h2 span {color:var(--accent);}
+  .hero-text p {color:var(--text); margin-bottom:28px; font-size:1.1rem;}
+
+  .hero-photo {
+    width:260px; height:260px; border-radius:50%; overflow:hidden; position:relative;
+    padding:4px; background: linear-gradient(135deg,var(--accent),var(--accent2),var(--accent3));
+    transition: transform 0.4s ease;
+  }
+  .hero-photo img {width:100%; height:100%; border-radius:50%; object-fit:cover; transition: transform 0.4s ease;}
+  .hero-photo:hover img {transform: scale(1.05) rotateY(8deg) rotateX(4deg);}
+
+  .socials {display:flex; gap:16px; margin-top:20px;}
+  .socials a {
+    width:44px; height:44px; border-radius:50%; background: var(--glass); display:grid; place-items:center;
+    color:var(--accent2); text-decoration:none; transition:var(--transition);
+  }
+  .socials a:hover {background:var(--accent2); color:#0d0d14; transform:translateY(-2px) scale(1.05);}
+  .socials img {width:22px; height:22px; filter: brightness(0) invert(1);}
+
+
+  .about {padding:70px 8%; display:flex; flex-wrap:wrap; justify-content:center; margin-bottom:50px;}
+  .about-content {max-width:650px;}
+  .about-content h3 {font-size:2rem; margin-bottom:16px; color:var(--accent2);}
+  .about-content p {color: var(--text); font-size:1.05rem; line-height:1.6;}
+
+ 
+  .projects {padding:70px 8%; text-align:center;}
+  .projects h2 {font-size:2.2rem; margin-bottom:35px;}
+  .project-grid {display:grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap:24px;}
+  .project {
+    background: var(--card); padding:24px; border-radius:var(--radius);
+    transition:var(--transition); border:2px solid transparent;
+  }
+  .project:hover {transform: translateY(-4px); border-color: var(--accent2);}
+  .project h4 {color: var(--accent); margin-bottom:10px;}
+  .project p {color: var(--text); margin-bottom:12px;}
+  .project a {color: var(--accent2); font-weight:600; text-decoration:none;}
+
+  /* Contact Section */
+  .contact {text-align:center; padding:70px 8%; margin-bottom:50px;}
+  .contact h2 {margin-bottom:12px;}
+  .contact p {color: var(--text); margin-bottom:18px;}
+  .contact .contact-links {
+    display:flex; justify-content:center; gap:20px; margin-top:20px;
+  }
+  .contact .contact-links a {
+    width:50px; height:50px; border-radius:50%; background: var(--glass); display:grid; place-items:center;
+    color:var(--accent2); text-decoration:none; transition:var(--transition);
+  }
+  .contact .contact-links a:hover {background:var(--accent2); color:#0d0d14; transform:translateY(-2px) scale(1.05);}
+  .contact .contact-links img {width:24px; height:24px; filter: brightness(0) invert(1);}
+
+  footer {text-align:center; color:var(--muted); font-size:14px; padding:35px 8%;}
+
+  @media (max-width:768px) {
+    .hero {flex-direction:column-reverse; text-align:center;}
+    .hero-photo {margin-bottom:20px;}
+  }
+</style>
+</head>
+<body>
+
+
+  <canvas id="matrix"></canvas>
+
+  <header class="overlay">
+    <h1>Souvik Ghosh</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero overlay">
+    <div class="hero-text">
+      <h2>Hi, I'm <span>Souvik Ghosh</span></h2>
+      <p>Frontend Developer crafting unique, modern web experiences with creative HTML & CSS designs and clean UI.</p>
+      <div class="socials">
+        <a href="https://www.linkedin.com/in/souvik-ghosh-399b44378/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn"></a>
+        <a href="https://github.com/Souvik00123x" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub"></a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="./C1F78F07-9C81-4CA9-9709-7F9B9B37E40D_1_201_a.jpeg" alt="Souvik Ghosh">
+    </div>
+  </section>
+
+  <section id="about" class="about overlay">
+    <div class="about-content">
+      <h3>About Me</h3>
+      <p>Hello! I'm Souvik, a web developer designing visually striking and interactive web interfaces using only HTML & CSS. I focus on originality, responsiveness, and modern aesthetics.</p>
+    </div>
+  </section>
+
+  <section id="projects" class="projects overlay">
+    <h2>Projects</h2>
+    <div class="project-grid">
+      <div class="project">
+        <h4>Survey Form</h4>
+        <p>Responsive survey form with clean UI and smooth input interactions.</p>
+        <a href="#">View Project →</a>
+      </div>
+      <div class="project">
+        <h4>Dog Gallery</h4>
+        <p>Dynamic gallery showcasing dog images using modern CSS grid layouts.</p>
+        <a href="#">View Project →</a>
+      </div>
+      <div class="project">
+        <h4>Portfolio Website</h4>
+        <p>My personal portfolio highlighting unique hero section and interactive design.</p>
+        <a href="#">View Project →</a>
+      </div>
+    </div>
+  </section>
+
+ <section id="contact" class="contact overlay">
+  <h2>Contact</h2>
+  <p>Let's collaborate and build something amazing together. Reach out via email or connect with me on LinkedIn and GitHub!</p>
+  <div class="contact-links">
+    <!-- Fixed Email icon -->
+    <a href="mailto:souvikghosh75840@gmail.com">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/new-post.png" alt="Email">
+    </a>
+    <a href="https://www.linkedin.com/in/souvik-ghosh-399b44378/" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+    </a>
+    <a href="https://github.com/Souvik00123x" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub">
+    </a>
+  </div>
+</section>
+
+  <footer class="overlay">
+    <p>© 2025 Souvik Ghosh. Crafted with ❤️ using HTML & CSS.</p>
+  </footer>
+
+  <script>
+    const canvas = document.getElementById('matrix');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const letters = 'アァカサタナハマヤラワABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
+    const drops = [];
+
+    for(let x = 0; x < columns; x++) drops[x] = Math.random() * canvas.height;
+
+    function draw() {
+      ctx.fillStyle = 'rgba(13,13,20,0.08)';
+      ctx.fillRect(0,0,canvas.width,canvas.height);
+      ctx.fillStyle = '#00ffb3';
+      ctx.font = fontSize + 'px monospace';
+      for(let i=0; i<drops.length; i++){
+        const text = letters[Math.floor(Math.random()*letters.length)];
+        ctx.fillText(text,i*fontSize,drops[i]*fontSize);
+        drops[i] += 1;
+        if(drops[i]*fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+      }
+    }
+
+    setInterval(draw, 35);
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+
+</body>
+</html>
